@@ -194,7 +194,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', type=str, required=True, help='flickr27 or logodet3k')
     parser.add_argument('--plot', action='store_true', help='To plot converted bboxes')
-    parser.add_argument('--image', default='data/flickr_logos_27_dataset/flickr_logos_27_dataset_images/4771736332.txt', type=str, help='path to plot image')
+    parser.add_argument('--image', default='data/flickr_logos_27_dataset/flickr_logos_27_dataset_images/3168295809.txt', type=str, help='path to plot image')
     opt = parser.parse_args()
 
     if opt.dataset == 'flickr27':
@@ -239,7 +239,7 @@ def main():
         image = Image.open(image_file)
 
         #Plot the Bounding Box
-        plot_bounding_box(image, annotation_list)
+        plot_bounding_box(image, annotation_list, class_id_to_name_mapping)
 
 
 if __name__ == "__main__":
