@@ -220,7 +220,7 @@ def main():
         # Convert and save the annotations
         for ann in tqdm(annotations):
             info_dict = extract_info_from_xml(ann)
-            convert_to_yolov5(info_dict, ann)
+            convert_to_yolov5(info_dict, ann, class_name_to_id_mapping)
 
     # Get any random annotation file
     # To test the annotations please uncomment the lines below
