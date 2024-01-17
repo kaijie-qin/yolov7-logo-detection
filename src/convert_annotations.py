@@ -1,3 +1,5 @@
+import logging
+
 from IPython.display import Image  # for displaying images
 import os 
 import xml.etree.ElementTree as ET
@@ -182,7 +184,7 @@ def plot_bounding_box(image, annotation_list, class_id_to_name_mapping):
     
     for ann in transformed_annotations:
         obj_cls, x0, y0, x1, y1 = ann
-        plotted_image.rectangle(((x0,y0), (x1,y1)))
+        plotted_image.rectangle(((x0,y0), (x1,y1)), outline="red", width=3)
         
         plotted_image.text((x0, y0 - 10), class_id_to_name_mapping[(int(obj_cls))])
     
@@ -211,17 +213,19 @@ def main():
             out = get_annotations(annotations_path, current_image_name, width, height)
             convert_to_yolov5(out, image_path, class_name_to_id_mapping)
 
-    else:
+    elif opt.dataset == "LogoDet-3K":
         # Dictionary that maps class names to IDs
         class_name_to_id_mapping = get_class_names_logodet('data/LogoDet-3K')
-        annotations = get_annotations_logodet('data/LogoDet-3K')
         class_id_to_name_mapping = dict(zip(class_name_to_id_mapping.values(), class_name_to_id_mapping.keys()))
+        annotations = get_annotations_logodet('data/LogoDet-3K')
 
         # Convert and save the annotations
         for ann in tqdm(annotations):
             info_dict = extract_info_from_xml(ann)
             convert_to_yolov5(info_dict, ann, class_name_to_id_mapping)
-
+    else:
+        logging.error(f"Incorrect dataset specified !")
+        exit(1)
     # Get any random annotation file
     # To test the annotations please uncomment the lines below
     if opt.plot:
