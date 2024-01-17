@@ -1,5 +1,5 @@
 #!/bin/bash
-# wget http://image.ntua.gr/iva/datasets/flickr_logos/flickr_logos_27_dataset.tar.gz -P data
+wget http://image.ntua.gr/iva/datasets/flickr_logos/flickr_logos_27_dataset.tar.gz -P data
 
 tar -xvzf data/flickr_logos_27_dataset.tar.gz 
 mv flickr_logos_27_dataset data/flickr_logos_27_dataset
