@@ -213,7 +213,7 @@ def main():
             out = get_annotations(annotations_path, current_image_name, width, height)
             convert_to_yolov5(out, image_path, class_name_to_id_mapping)
 
-    elif opt.dataset == "LogoDet-3K":
+    elif opt.dataset == "logodet3k":
         # Dictionary that maps class names to IDs
         class_name_to_id_mapping = get_class_names_logodet('data/LogoDet-3K')
         class_id_to_name_mapping = dict(zip(class_name_to_id_mapping.values(), class_name_to_id_mapping.keys()))
